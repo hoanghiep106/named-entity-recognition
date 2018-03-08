@@ -1,6 +1,5 @@
-const ner = require('ner');
 const MongoClient = require('mongodb').MongoClient;
-const { mongoConfig } = require('./config');
+const { mongoConfig } = require('../config/app');
 
 const connect = (callback) => {
   MongoClient.connect(mongoConfig.mongoServerUrl, (err, dbs) => {

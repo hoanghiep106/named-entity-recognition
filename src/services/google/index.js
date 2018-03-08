@@ -1,13 +1,7 @@
-var NodeGeocoder = require('node-geocoder');
+const NodeGeocoder = require('node-geocoder');
+const { geocoderConfig } = require('../../config/app');
 
-var options = {
-  provider: 'google',
-  httpAdapter: 'https',
-  apiKey: 'AIzaSyANkv6Rq2MyQMPGZ8he5dCSNI5IesEtICY',
-  formatter: null
-};
-
-var geocoder = NodeGeocoder(options);
+var geocoder = NodeGeocoder(geocoderConfig);
 
 const googleSetLatLng = (geocoder, collection, documentId, location, successCallback) => {
   if (collection) {

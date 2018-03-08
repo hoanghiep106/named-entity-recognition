@@ -1,6 +1,6 @@
-const { getNERLocations } = require('./ner');
-const { setLatLng, connect } = require('./db');
-const { geocoder, googleSetLatLng, googleGetCountry } = require('./google');
+const { getNERLocations } = require('../../services/ner');
+const { geocoder, googleSetLatLng, googleGetCountry } = require('../../services/google');
+const { setLatLng, connect } = require('../../db');
 
 const inferTweetLocation = () => {
   connect((db) => {
@@ -25,7 +25,7 @@ const inferTweetLocation = () => {
                       countJustInfered += 1;
                     });
                   } else {
-                    console.log(locations)
+                    console.log(locations);
                   }
                 } else {
                   console.log('[No location found in tweet]');
@@ -50,6 +50,6 @@ const inferTweetLocation = () => {
   });
 };
 
-module.export = {
+module.exports = {
   inferTweetLocation,
 };

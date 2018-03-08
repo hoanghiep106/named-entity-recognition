@@ -1,4 +1,4 @@
-## This directory helps to infer tweet's location using some inference techniques.
+## This directory helps to infer tweet's location using some inference techniques. (Still in development)
 
 ### Requirement
 * Node
@@ -12,15 +12,11 @@
 ```
 sh ./ner-server.sh
 ```
-* Get into node-tweets-location-inference:
-```
-cd node-tweets-location-inference
-```
-* Install dependencies in node-tweets-location-inference:
+* Install dependencies:
 ```
 npm i
 ```
-* Start in node-tweets-location-inference:
+* Start infer your tweets:
 ```
 npm start
 ```
