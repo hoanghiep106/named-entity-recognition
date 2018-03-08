@@ -24,4 +24,4 @@ npm start
 ## Credits:
 * Stanford NER project: https://nlp.stanford.edu/software/CRF-NER.shtml
 * Node client for Stanford NER: https://github.com/niksrc/ner
-* Node google geocoder: https://github.com/nchaulet/node-geocoderd
+* Node google geocoder: https://github.com/nchaulet/node-geocoder

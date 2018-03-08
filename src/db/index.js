@@ -6,9 +6,10 @@ const connect = (callback) => {
     if(err) { return console.dir(err); }
     const db = dbs.db(mongoConfig.dbName);
     if (db) {
-      callback(db);
+      callback(db, dbs);
     } else {
       console.log(`No datase with name ${dbName}`);
+      dbs.close();
     }
   });
 };

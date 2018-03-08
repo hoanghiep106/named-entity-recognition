@@ -11,7 +11,8 @@ const nerConfig = {
 const geocoderConfig = {
   provider: 'google',
   httpAdapter: 'https',
-  apiKey: 'AIzaSyANkv6Rq2MyQMPGZ8he5dCSNI5IesEtICY',
+  // apiKey: 'AIzaSyANkv6Rq2MyQMPGZ8he5dCSNI5IesEtICY',
+  apiKey: 'AIzaSyDxrxa-ZacB4CO84xJ0pVj_zeUjEy30q5g',
   formatter: null,
 };
 
