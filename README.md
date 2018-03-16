@@ -12,13 +12,21 @@
 ```
 sh ./ner-server.sh
 ```
-* Install dependencies:
+* Install dependencies (For the first time only):
 ```
 npm i
 ```
-* Start infer your tweets:
+* Start mongod server:
 ```
-npm start
+mongod
+```
+* Start infer your user location:
+```
+npm start user
+```
+* Start infer your tweet location:
+```
+npm start tweet
 ```
 
 ## Credits:

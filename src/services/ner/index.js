@@ -10,4 +10,4 @@ const getNERLocations = (text, callback) => {
 
 module.exports = {
   getNERLocations,
-}
+};

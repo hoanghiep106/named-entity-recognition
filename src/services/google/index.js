@@ -13,7 +13,7 @@ const googleSetLatLng = (geocoder, collection, documentId, location, successCall
         collection.updateOne({id: documentId}, {$set: {lat, lng}}, (err, res) => {
           if (err) throw err;
           console.log(`Document updated with google. ${lat}, ${lng}`);
-          successCallback();
+          if (successCallback) successCallback();
         });
       } else {
         console.log('Geocoder found no locations.')
@@ -24,10 +24,31 @@ const googleSetLatLng = (geocoder, collection, documentId, location, successCall
   }
 };
 
-const googleGetCountry = (geocoder, location) => {
+const googleSetLatLngs = (geocoder, collection, documentId, locations, successCallback) => {
+  if (collection) {
+    geocoder.batchGeocode(locations, function (err, results) {
+      for (let i = 0; i < results.length; i++) {
+        if (!results[i].error && results[i].value && results[i].value.latitude && results[i].value.longitude) {
+          const lat = results[i].value.latitude;
+          const lng = results[i].value.longitude;
+          collection.updateOne({id: documentId}, {$set: {lat, lng}}, (error, res) => {
+            if (error) throw error;
+            console.log(`Document updated with google. ${lat}, ${lng}`);
+            if (successCallback) successCallback();
+          });
+          return null;
+        }
+      }
+    });
+  } else {
+    console.log('No collection');
+  }
+};
+
+const googleGetCountry = (geocoder, location, successCallback) => {
   geocoder.geocode(encodeURIComponent(location), (err, res) => {
     if (res && res[0]) {
-      console.log(res[0].country);
+      successCallback(res[0].country);
     } else {
       console.log('No country detected');
     }
@@ -37,5 +58,6 @@ const googleGetCountry = (geocoder, location) => {
 module.exports = {
   geocoder,
   googleSetLatLng,
+  googleSetLatLngs,
   googleGetCountry
 };

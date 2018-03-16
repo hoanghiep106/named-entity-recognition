@@ -19,12 +19,12 @@ const setLatLng = (collection, documentId, lat, lng, successCallback) => {
     collection.updateOne({ id: documentId }, { $set: {lat, lng } }, (err, res) => {
       if (err) throw err;
       console.log(`Document updated. ${lat}, ${lng}`);
-      successCallback();
+      if (successCallback) successCallback();
     });
   } else {
     console.log('No collection');
   }
-}
+};
 
 module.exports = {
   connect,

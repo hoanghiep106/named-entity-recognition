@@ -19,7 +19,7 @@ app.get('/tweets', (req, res) => {
     db.collection('tweets').find().toArray((e, result) => {
       res.send(JSON.stringify(result));
     });
-  })
+  });
 });
 
 app.listen(3001, () => console.log('Example app listening on port 3000!'))
