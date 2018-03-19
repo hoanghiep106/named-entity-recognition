@@ -8,7 +8,7 @@ app.get('/users', (req, res) => {
   res.set(headers);
   connect((db) => {
     db.collection('users').find().toArray((e, result) => {
-      res.send(JSON.stringify(result));
+      res.send(JSON.stringify(result.filter(ele => ele.lat && ele.lng).map((ele) => {return {lat: ele.lat, lng: ele.lng}})));
     });
   })
 });
@@ -17,7 +17,7 @@ app.get('/tweets', (req, res) => {
   res.set(headers);
   connect((db) => {
     db.collection('tweets').find().toArray((e, result) => {
-      res.send(JSON.stringify(result));
+      res.send(JSON.stringify(result.filter(ele => ele.lat && ele.lng).map((ele) => {return {lat: ele.lat, lng: ele.lng}})));
     });
   });
 });
