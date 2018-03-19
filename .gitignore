@@ -1,2 +1,5 @@
 node_modules
 stanford-ner
+package-lock.json
+__MACOSX
+stanford-ner.zip
