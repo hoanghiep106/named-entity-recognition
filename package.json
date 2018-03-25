@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "api": "node src/server/index.js",
+    "api": "node src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hiep Nguyen",
   "license": "MIT",
   "dependencies": {
     "args-parser": "^1.1.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mongodb": "^3.0.3",
     "ner": "^0.2.2",
