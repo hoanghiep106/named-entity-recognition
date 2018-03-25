@@ -7,7 +7,7 @@ const inferUserLocation = () => {
   connect((db, dbs) => {
     db.collection('users').find().toArray((e, res) => {
       res.forEach((user) => {
-        if (!user.location && user.description) {
+        if (!user.location && user.description && !user.noLatLng) {
           getNERLocations(utf8.encode(user.description), (locations) => {
             if (locations && locations.length) {
               db.collection('users').update({id: user.id}, {$set: {location: locations[0]}});
