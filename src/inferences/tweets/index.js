@@ -36,6 +36,8 @@ const inferTweetLocation = () => {
               });
             }
           }
+          // Fix Twitter Date
+          tweetsCollection.updateOne({id: tweet.id}, {$set: {created_at: new Date(tweet.created_at)}});
         });
       }
     });
