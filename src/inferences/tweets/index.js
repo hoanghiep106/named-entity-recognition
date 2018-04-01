@@ -25,8 +25,8 @@ const inferTweetLocation = () => {
                   }
                 } else {
                   usersCollection.findOne({id: tweet.user.id}, (err, user) => {
-                    if (user.location) console.log(user.lat, user.lng);
-                    if (user.lat && user.lng) {
+                    if (user && user.location) console.log(user.lat, user.lng);
+                    if (user && user.lat && user.lng) {
                       tweetsCollection.updateOne({id: tweet.id}, {$set: {lat: user.lat, lng: user.lng}}, (err, res) => {
                         if (err) throw err;
                         console.log(`Document updated with user lat lng. ${user.lat}, ${user.lng}`);
