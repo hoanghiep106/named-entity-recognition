@@ -25,9 +25,9 @@ const inferTweetLocation = () => {
                 } else {
                   console.log('[No location found in tweet. Set tweet location with user location]');
                   if (tweet.user.lat && tweet.user.lng) {
-                    tweetsCollection.updateOne({id: tweet.id}, {$set: {lat, lng}}, (err, res) => {
+                    tweetsCollection.updateOne({id: tweet.id}, {$set: {lat: tweet.user.lat, lng: tweet.user.lng}}, (err, res) => {
                       if (err) throw err;
-                      console.log(`Document updated with google. ${lat}, ${lng}`);
+                      console.log(`Document updated with user lat lng. ${lat}, ${lng}`);
                     });
                   } else if (tweet.user.location) {
                     googleSetLatLng(geocoder, tweetsCollection, tweet.id, tweet.user.location);
