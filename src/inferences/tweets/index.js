@@ -10,7 +10,7 @@ const inferTweetLocation = () => {
     tweetsCollection.find().toArray(function(e, res) {
       if (res && res.length) {
         res.forEach((tweet, index) => {
-          if (!tweet.lat && !tweet.lng && !tweet.noLatLng) {
+          if (!tweet.lat && !tweet.lng) {
             if (tweet.geo && tweet.geo.coordinates) {
               const lat = tweet.geo.coordinates[0];
               const lng = tweet.geo.coordinates[1];
@@ -25,14 +25,14 @@ const inferTweetLocation = () => {
                   }
                 } else {
                   usersCollection.findOne({id: tweet.user.id}, (err, user) => {
-                    console.log(user.lat, user.lng);
+                    if (user.location) console.log(user.lat, user.lng);
                     if (user.lat && user.lng) {
                       tweetsCollection.updateOne({id: tweet.id}, {$set: {lat: user.lat, lng: user.lng}}, (err, res) => {
                         if (err) throw err;
                         console.log(`Document updated with user lat lng. ${user.lat}, ${user.lng}`);
                       });
                     } else if (tweet.user.location) {
-                      googleSetLatLng(geocoder, tweetsCollection, tweet.id, user.location);
+                      // googleSetLatLng(geocoder, tweetsCollection, tweet.id, user.location);
                     }
                   });
                 }
