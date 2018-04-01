@@ -1,7 +1,7 @@
 const NodeGeocoder = require('node-geocoder');
 const { geocoderConfig } = require('../../config/app');
 
-var geocoder = NodeGeocoder(geocoderConfig[2]);
+var geocoder = NodeGeocoder(geocoderConfig[0]);
 
 const googleSetLatLng = (geocoder, collection, documentId, location, successCallback) => {
   if (collection) {

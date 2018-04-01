@@ -11,7 +11,7 @@ const inferUserLocation = () => {
           getNERLocations(utf8.encode(user.description), (locations) => {
             if (locations && locations.length) {
               db.collection('users').update({id: user.id}, {$set: {location: locations[0]}});
-              googleSetLatLngs(geocoder, db.collection('users'), user.id, locations[0]);
+              googleSetLatLng(geocoder, db.collection('users'), user.id, locations[0]);
             } else {
               console.log('[No location infered from user description]');
             }
