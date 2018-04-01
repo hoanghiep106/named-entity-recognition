@@ -17,7 +17,7 @@ const inferTweetLocation = () => {
               setLatLng(tweetsCollection, tweet.id, lat, lng);
             } else {
               getNERLocations(utf8.encode(tweet.text), (locations) => {
-                if (locations.length) {
+                if ( locations && locations.length) {
                   if (locations.length === 1) {
                     googleSetLatLng(geocoder, tweetsCollection, tweet.id, locations[0]);
                   } else {
@@ -25,6 +25,7 @@ const inferTweetLocation = () => {
                   }
                 } else {
                   usersCollection.findOne({id: tweet.user.id}, (err, user) => {
+                    console.log(user.lat, user.lng);
                     if (user.lat && user.lng) {
                       tweetsCollection.updateOne({id: tweet.id}, {$set: {lat: user.lat, lng: user.lng}}, (err, res) => {
                         if (err) throw err;
