@@ -32,7 +32,7 @@ const inferTweetLocation = () => {
                         console.log(`Document updated with user lat lng. ${user.lat}, ${user.lng}`);
                       });
                     } else if (tweet.user.location) {
-                      // googleSetLatLng(geocoder, tweetsCollection, tweet.id, user.location);
+                      googleSetLatLng(geocoder, tweetsCollection, tweet.id, user.location);
                     }
                   });
                 }
