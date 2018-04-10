@@ -6,7 +6,10 @@ var geocoder = NodeGeocoder(geocoderConfig[2]);
 const googleSetLatLng = async (geocoder, collection, documentId, location, successCallback, failedCallback) => {
   if (collection) {
     await geocoder.geocode(location, (err, res) => {
-      if (err) console.log(err);
+      if (err) {
+        console.log(err);
+        return 0;
+      }
       if (res && res[0]) {
         const lat = res[0].latitude;
         const lng = res[0].longitude;
