@@ -3,21 +3,21 @@ const { geocoderConfig } = require('../../config/app');
 
 var geocoder = NodeGeocoder(geocoderConfig[2]);
 
-const googleSetLatLng = (geocoder, collection, documentId, location, successCallback) => {
+const googleSetLatLng = async (geocoder, collection, documentId, location, successCallback, failedCallback) => {
   if (collection) {
-    geocoder.geocode(location, (err, res) => {
+    await geocoder.geocode(location, (err, res) => {
       if (err) console.log(err);
       if (res && res[0]) {
         const lat = res[0].latitude;
         const lng = res[0].longitude;
         collection.updateOne({id: documentId}, {$set: {lat, lng}}, (err, res) => {
-          if (err) throw err;
+          if (err) console.log(err);
           console.log(`Document updated with google. ${lat}, ${lng}`);
           if (successCallback) successCallback();
         });
       } else {
         console.log('Geocoder found no locations.')
-        collection.updateOne({id: documentId}, {$set: {noLatLng: true}});
+        if (failedCallback) failedCallback();
       }
     });
   } else {
